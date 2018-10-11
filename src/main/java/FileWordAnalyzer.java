@@ -7,12 +7,11 @@ public class FileWordAnalyzer {
 
 
     public List<String> wordsByABC(){
-        List<String> wordsAlphabetically = new ArrayList<>();
         FilePartReader reader = new FilePartReader();
         String chosenText = reader.readLines(1, 10);
         String[] words = chosenText.split("\\s");
 
-        wordsAlphabetically.addAll(Arrays.asList(words));
+        List<String> wordsAlphabetically = new ArrayList<>(Arrays.asList(words));
 
         Collections.sort(wordsAlphabetically);
 
@@ -23,10 +22,9 @@ public class FileWordAnalyzer {
     public List<String> wordsContainingSubString(String subString) {
         List<String> wordsContainingSubString = new ArrayList<>();
         FilePartReader reader = new FilePartReader();
-        List<String> allWords = new ArrayList<>();
         String chosenText = reader.readLines(1,10);
         String[] words = chosenText.split("\\s");
-        allWords.addAll(Arrays.asList(words));
+        List<String> allWords = new ArrayList<>(Arrays.asList(words));
 
         for(String word : allWords){
             if(word.contains(subString)) {
@@ -41,10 +39,9 @@ public class FileWordAnalyzer {
     public List<String> wordsArePalindrome() {
         List<String> palindromeWords = new ArrayList<>();
         FilePartReader reader = new FilePartReader();
-        List<String> allWords = new ArrayList<>();
         String chosenText = reader.readLines(1,10);
         String[] words = chosenText.split("\\s");
-        allWords.addAll(Arrays.asList(words));
+        List<String> allWords = new ArrayList<>(Arrays.asList(words));
         StringBuilder sb = new StringBuilder();
 
         for(String word : allWords){
