@@ -21,8 +21,8 @@ public class FileWordAnalyzer {
 
 
     public List<String> wordsContainingSubString(String subString) {
-        FilePartReader reader = new FilePartReader();
         List<String> wordsContainingSubString = new ArrayList<>();
+        FilePartReader reader = new FilePartReader();
         List<String> allWords = new ArrayList<>();
         String chosenText = reader.readLines(1,10);
         String[] words = chosenText.split("\\s");
@@ -40,6 +40,22 @@ public class FileWordAnalyzer {
 
     public List<String> wordsArePalindrome() {
         List<String> palindromeWords = new ArrayList<>();
+        FilePartReader reader = new FilePartReader();
+        List<String> allWords = new ArrayList<>();
+        String chosenText = reader.readLines(1,10);
+        String[] words = chosenText.split("\\s");
+        allWords.addAll(Arrays.asList(words));
+        StringBuilder sb = new StringBuilder();
+
+        for(String word : allWords){
+            sb.append(word);
+            String wordReversed = sb.reverse().toString();
+            if(word.equals(wordReversed)){
+                palindromeWords.add(word);
+            }
+            sb.setLength(0);
+        }
+
         return palindromeWords;
     }
 
@@ -49,5 +65,6 @@ public class FileWordAnalyzer {
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer();
         fileWordAnalyzer.wordsByABC();
         fileWordAnalyzer.wordsContainingSubString("a");
+        fileWordAnalyzer.wordsArePalindrome();
     }
 }
