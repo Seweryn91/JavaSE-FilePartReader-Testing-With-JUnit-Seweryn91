@@ -23,10 +23,6 @@ public class FilePartReader {
         if ((fromLine > toLine) || fromLine < 1){
             throw new IllegalArgumentException("Provided arguments are invalid!");
         }
-        else{
-            System.out.println(readLines(fromLine, toLine));
-
-        }
 
     }
 
@@ -46,15 +42,19 @@ public class FilePartReader {
         return fileContent.toString();
     }
 
-    public String readLines(Integer fromLine, Integer toLine){
+    public String readLines(){
         String text = read();
         StringBuilder lines = new StringBuilder();
-        String[] splitText = text.split("\n");
-        for(int i = fromLine-1; i < toLine; i++){
-            String selectedLines = splitText[i];
-            lines.append(selectedLines);
-            lines.append("\n");
+        String[] textLines = text.split("\n");
+
+        for (int i = 0; i<textLines.length; i++){
+            if (i >= fromLine-1 && i <= toLine-1){
+                lines.append(textLines[i]);
+                lines.append("\n");
+            }
         }
+
         return lines.toString();
     }
+
 }
