@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,9 +12,7 @@ public class FileWordAnalyzer {
         String chosenText = reader.readLines(1, 10);
         String[] words = chosenText.split("\\s");
 
-        for(String word : words){
-            wordsAlphabetically.add(word);
-        }
+        wordsAlphabetically.addAll(Arrays.asList(words));
 
         Collections.sort(wordsAlphabetically);
 
@@ -22,7 +21,19 @@ public class FileWordAnalyzer {
 
 
     public List<String> wordsContainingSubString(String subString) {
+        FilePartReader reader = new FilePartReader();
         List<String> wordsContainingSubString = new ArrayList<>();
+        List<String> allWords = new ArrayList<>();
+        String chosenText = reader.readLines(1,10);
+        String[] words = chosenText.split("\\s");
+        allWords.addAll(Arrays.asList(words));
+
+        for(String word : allWords){
+            if(word.contains(subString)) {
+                wordsContainingSubString.add(word);
+            }
+        }
+
         return wordsContainingSubString;
 
     }
@@ -37,5 +48,6 @@ public class FileWordAnalyzer {
         filePartReader.setup("test_data.txt", 1, 10);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer();
         fileWordAnalyzer.wordsByABC();
+        fileWordAnalyzer.wordsContainingSubString("a");
     }
 }
